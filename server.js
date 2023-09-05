@@ -8,13 +8,13 @@ app.use(cors())
 app.use(express.json())
 
 
-app.get("/login", async (req, res) => {
+app.post("/login", async (req, res) => {
     try {
         console.log("bod", req.body)
         const { email, password } = req.body
-        if (!email.trim()) return res.status(404).json({ success: false, data: {}, message: "Email Not Found" })
+        if (!email?.trim()) return res.status(404).json({ success: false, data: {}, message: "Email Not Found" })
 
-        if (!password.trim()) return res.status(404).json({ success: false, data: {}, message: "Password Not Found" })
+        if (!password?.trim()) return res.status(404).json({ success: false, data: {}, message: "Password Not Found" })
 
 
         if (email == "test@gmail.com" && password == "1234") {
@@ -37,7 +37,7 @@ app.get("/login", async (req, res) => {
         }
     } catch (error) {
         console.log("login err", error)
-        res.status(500).json(error)
+        res.status(500).json({ success: false, data: {}, message: "Internal Server Error" })
     }
 })
 
