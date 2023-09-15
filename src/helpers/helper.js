@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const generateToken = (body) => {
+const generateAccessToken = (body) => {
     try {
         const token = jwt.sign(body, process.env.KEY, { expiresIn: 60 })
         return token
@@ -56,4 +56,4 @@ const verifyHeaderToken = async () => {
         return new ErrorResponse(res, 401, "Unauthorized..!")
     }
 }
-module.exports = { generateToken, generateRefreshToken }
+module.exports = { generateAccessToken, generateRefreshToken }

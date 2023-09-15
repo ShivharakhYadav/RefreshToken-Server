@@ -9,7 +9,13 @@ const environmentConfig = require('./config/envorimnentConfig')
 const authRouter = require("./Routes/authRoutes");
 
 
-app.use(cors());
+// app.use((req, res, next) => {
+//     // 'Access-Control-Allow-Origin'
+//     res.header("Access-Control-Allow-Credentials", true);
+//     res.header('Access-Control-Allow-Origin', true)
+//     next()
+// })
+app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use("/auth", authRouter);
 
